@@ -10,14 +10,13 @@ export function formatProductsResponse(list: {
   data: any;
 }): TransformedProduct[] {
   const products = list.data.map((product: any) => {
-    console.log(product);
     return {
       id: product.id,
       documentId: product.documentId,
       name: product.name || "Unknown Product",
       price: product.price || 0,
       description: product.description || "",
-      image: product.image?.url || "/placeholder-product.png",
+      image: product.image?.url || "",
       slug: product.slug,
     };
   });

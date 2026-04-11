@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCart, Heart } from "lucide-react";
@@ -39,6 +39,8 @@ export default function ProductCard({ product }: ProductCardProps) {
       setIsAdding(false);
     }
   };
+
+
 
   return (
     <Link href={`/products/${product.documentId}`}>

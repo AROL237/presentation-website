@@ -11,10 +11,13 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: "https",
-        hostname: "eloquent-dinosaurs-72f5fe2544.strapiapp.com", // production
+        hostname: "*.strapiapp.com",
+      },
+      {
+        protocol: "https",
+        hostname: "*.media.strapiapp.com", // covers the media CDN subdomain
       },
     ],
-    dangerouslyAllowLocalIP: true,
   },
 };
 
