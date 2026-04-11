@@ -1,0 +1,79 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+
+/**
+ * SPARE CARE BRAND COLORS REFERENCE
+ * =================================
+ * This file documents the official color palette used throughout the application.
+ * Source of truth for actual theme colors is: app/globals.css
+ * 
+ * Primary Color: Darker Brown (hsla(16, 49, 43, 1))
+ * Secondary Color: Light Cream (hsla(28, 42, 91, 1))
+ * Accent Color: Burnt Orange (hsla(22, 64, 57, 1))
+ */
+
+
+/* ============================================================= */
+/* PRIMARY COLOR PALETTE - NEW DARKER BROWN                     */
+/* ============================================================= */
+
+/* Primary Color - Darker Brown (UPDATED) */
+.primary-hex { color: #6B3820; }
+.primary-rgba { color: rgba(107, 56, 32, 1); }
+.primary-hsla { color: hsla(16, 49, 43, 1); }
+
+/* Light Cream Background */
+.cream-hex { color: #F2E8DF; }
+.cream-rgba { color: rgba(242, 232, 223, 1); }
+.cream-hsla { color: hsla(28, 42, 91, 1); }
+
+/* Burnt Orange Accent */
+.accent-hex { color: #D9814E; }
+.accent-rgba { color: rgba(217, 129, 78, 1); }
+.accent-hsla { color: hsla(22, 64, 57, 1); }
+
+/* Light Brown */
+.light-brown-hex { color: #F2B988; }
+.light-brown-rgba { color: rgba(242, 185, 136, 1); }
+.light-brown-hsla { color: hsla(27, 80, 74, 1); }
+
+/* Warm Brown */
+.warm-brown-hex { color: #A65638; }
+.warm-brown-rgba { color: rgba(166, 86, 56, 1); }
+.warm-brown-hsla { color: hsla(16, 49, 43, 1); }
+
+
+/* ============================================================= */
+/* LIGHT MODE COLORS                                            */
+/* ============================================================= */
+
+.light-background { background-color: hsla(28, 42, 91, 1); } /* Cream */
+.light-foreground { color: #1a1a1a; } /* Dark text */
+.light-primary { color: hsla(16, 49, 43, 1); } /* Darker brown buttons/links */
+.light-accent { color: hsla(22, 64, 57, 1); } /* Burnt orange for accents */
+
+
+/* ============================================================= */
+/* DARK MODE COLORS                                             */
+/* ============================================================= */
+
+.dark-background { background-color: #1a2632; } /* Dark teal-ish */
+.dark-foreground { color: hsla(28, 42, 91, 1); } /* Cream text */
+.dark-primary { color: hsla(16, 49, 43, 1); } /* Darker brown buttons/links */
+.dark-accent { color: hsla(22, 64, 57, 1); } /* Burnt orange for accents */
+
+
+/* ============================================================= */
+/* UTILITY CLASSES FOR COLOR REFERENCE                          */
+/* ============================================================= */
+
+/* Use these classes for quick color testing */
+.bg-primary { background-color: hsla(16, 49, 43, 1); }
+.bg-cream { background-color: hsla(28, 42, 91, 1); }
+.bg-accent { background-color: hsla(22, 64, 57, 1); }
+
+.text-primary { color: hsla(16, 49, 43, 1); }
+.text-cream { color: hsla(28, 42, 91, 1); }
+.text-accent { color: hsla(22, 64, 57, 1); }

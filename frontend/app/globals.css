@@ -1,0 +1,187 @@
+  @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/**
+ * Global Styles & Theme Configuration
+ * ====================================
+ * This file contains the global styles and CSS variables for the Spare Care website.
+ * 
+ * Color Scheme:
+ * - Primary: Brown (hsla(16, 50, 23, 1)) - Main brand color used for buttons, links, accents
+ * - Light Mode: Cream background with brown text
+ * - Dark Mode: Dark teal background with cream text
+ * 
+ * Supports light and dark themes via next-themes
+ */
+
+@custom-variant dark (&:is(.dark *));
+
+/**
+ * Tailwind CSS Theme Configuration
+ * Maps custom CSS variables to Tailwind color utilities
+ */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/**
+ * Light Mode Colors (:root)
+ * ========================
+ * Default theme for light mode (light preference or system light)
+ * - Background: Cream (hsla(28, 42, 91, 1))
+ * - Text: Brown (hsla(16, 50, 23, 1))
+ * - Primary: Darker Brown (hsla(16, 49, 43, 1)) - used for buttons, links, accents
+ * - Muted: Light beige for secondary text
+ * - Cards: Cream background with brown text for contrast
+ */
+:root {
+  --background: hsla(28, 42, 91, 1);
+  --foreground: hsla(16, 50, 23, 1);
+  --card: hsla(28, 42, 95, 1);
+  --card-foreground: hsla(16, 50, 23, 1);
+  --popover: hsla(28, 42, 95, 1);
+  --popover-foreground: hsla(16, 50, 23, 1);
+  --primary: hsla(16, 49, 43, 1);
+  --primary-foreground: hsla(28, 42, 91, 1);
+  --secondary: hsla(28, 42, 91, 1);
+  --secondary-foreground: hsla(16, 50, 23, 1);
+  --muted: hsla(28, 42, 87, 1);
+  --muted-foreground: hsla(16, 49, 43, 0.9);
+  --accent: hsla(16, 49, 43, 1);
+  --accent-foreground: hsla(28, 42, 91, 1);
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: hsla(16, 49, 43, 0.35);
+  --input: hsla(28, 42, 91, 1);
+  --ring: hsla(16, 49, 43, 1);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --radius: 0.625rem;
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+/**
+ * Dark Mode Colors (.dark)
+ * =======================
+ * Theme colors when dark mode is enabled
+ * - Background: Dark teal (hsla(175, 22, 12, 1))
+ * - Text: Cream (hsla(28, 42, 91, 1)) for contrast on dark background
+ * - Primary: Darker Brown (hsla(16, 49, 43, 1)) - consistent brand color across themes
+ * - Muted: Darker tones with transparency
+ * - Cards: Dark teal background with cream text
+ * - Accent: Darker brown for buttons and interactive elements
+ */
+.dark {
+  --background: hsla(175, 22, 12, 1);
+  --foreground: hsla(28, 42, 91, 1);
+  --card: hsla(175, 28, 16, 1);
+  --card-foreground: hsla(28, 42, 91, 1);
+  --popover: hsla(175, 28, 16, 1);
+  --popover-foreground: hsla(28, 42, 91, 1);
+  --primary: hsla(16, 49, 43, 1);
+  --primary-foreground: hsla(28, 42, 91, 1);
+  --secondary: hsla(175, 22, 12, 1);
+  --secondary-foreground: hsla(28, 42, 91, 1);
+  --muted: hsla(175, 28, 18, 1);
+  --muted-foreground: hsla(28, 42, 91, 0.9);
+  --accent: hsla(16, 49, 43, 1);
+  --accent-foreground: hsla(28, 42, 91, 1);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: hsla(28, 42, 91, 0.35);
+  --input: hsla(28, 42, 91, 0.15);
+  --ring: hsla(16, 49, 43, 1);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+/**
+ * Base Layer Styles
+ * =================
+ * Global base styles applied to all elements
+ */
+@layer base {
+  /**
+   * Universal Reset
+   * All elements use CSS border and ring variables for consistent styling
+   */
+  * {
+    @apply border-border outline-ring/50;
+  }
+  
+  /**
+   * Body Styles
+   * Applies background and text color from CSS variables
+   */
+  body {
+    @apply bg-background text-foreground;
+  }
+  
+  /**
+   * HTML Styles
+   * Sets the default font family for the entire document
+   */
+  html {
+    @apply font-sans;
+  }
+}

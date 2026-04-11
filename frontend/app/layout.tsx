@@ -1,0 +1,49 @@
+import type { Metadata } from "next";
+import { Geist, Geist_Mono } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import Header from "./sections/Header";
+import Footer from "./sections/Footer";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export const metadata: Metadata = {
+  title: "Spare Care - Premium Hair Care Products",
+  description:
+    "High-quality hair care solutions for all hair types and textures",
+  openGraph: {
+    title: "Spare Care",
+    description: "Premium Hair Care Products",
+    type: "website",
+  },
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="en"
+      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
+    >
+      <body className="min-h-full flex flex-col bg-background text-foreground">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
+          <Header />
+          <main className="flex-grow">{children}</main>
+          <Footer />
+        </ThemeProvider>
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,87 @@
+{
+  "navigation_tab": [
+    {
+      "title": "shop",
+      "description": "",
+      "link": "#shop"
+    },
+    {
+      "title": "about",
+      "description": "",
+      "link": "#about"
+    },
+    {
+      "title": "Guide",
+      "description": "",
+      "link": "#guide"
+    },
+    {
+      "title": "contact",
+      "description": "",
+      "link": "#contact"
+    }
+  ],
+  "social_link": [
+    {
+      "name": "facebook",
+      "url": ""
+    },
+    {
+      "name": "whatsapp",
+      "url": ""
+    },
+    {
+      "name": "linkedin",
+      "url": ""
+    }
+  ],
+  "list_of_steps": [
+    {
+      "step": "1",
+      "title": "choice",
+      "description": "make you choice , and tap or click on it.",
+      "link": ""
+    },
+    {
+      "step": "2",
+      "title": "open & book",
+      "description": "open basket and click or tap on order.",
+      "link": ""
+    },
+    {
+      "step": "3",
+      "title": "provide details",
+      "description": "provide your email to be be contacted",
+      "link": ""
+    },
+
+    {
+      "step": "4",
+      "title": "We contact you",
+      "description": "we will contact you to finalise your order.",
+      "link": ""
+    }
+  ],
+  "Faqs": [
+    {
+      "question": "How Many Packs of Afro Kinky Bulk Hair Do I Need.",
+      "answer": "Typically, 3 packs of afro kinky hair are sufficient for a whole head look, while 5 packs are recommended for voluminous, fluffy looks."
+    },
+    {
+      "question": "How to Install Afro Kinky Bulk Hair",
+      "answer": "Our afro kinky bulk hair can be installed using various methods such as crochet braiding, twist braiding, or interlocking. Make sure to prep your natural hair properly."
+    },
+    {
+      "question": "Can Afro Kinky Bulk Human Hair Be Styled With Other Tools",
+      "answer": "Yes, you can style Afro Kinky Bulk human hair using tools. Ironing, bleaching, dying are all available. Avoid excessive heat styling to maintain the hair's quality.The hair can also be braided, twisted, or pulled up into various styles like ponytails or buns."
+    },
+    {
+      "question": "What Colors Is Afro Kinky Bulk Available In",
+      "answer": "Our Afro Kinky Bulk hair is available in various popular colors. For the natural black color, it can be bleached or dyed to achieve your desired shade."
+    },
+    {
+      "question": "What Is the Hair Texture of Afro Kinky Bulk",
+      "answer": "QVR Afro Kinky Bulk hair mimics the natural texture of tightly coiled Type 4c hair. The strands have a kinky, coily pattern that blends seamlessly with African American hair textures."
+    }
+  ]
+}
