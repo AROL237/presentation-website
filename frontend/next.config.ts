@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
         port: "1337",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "eloquent-dinosaurs-72f5fe2544.strapiapp.com", // production
+      },
     ],
     dangerouslyAllowLocalIP: true,
   },
