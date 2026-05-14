@@ -53,11 +53,18 @@ export interface ProductAttributes {
     };
   };
   image?: ProductImage;
+  images: ProductImageListType[];
   createdAt?: string;
   updatedAt?: string;
   publishedAt?: string;
   [key: string]: unknown;
 }
+
+export type ProductImageListType = {
+  documentId: string;
+  color: string;
+  url?: ProductImage;
+};
 
 /**
  * Product Model - Full product with ID and attributes
@@ -78,6 +85,7 @@ export interface TransformedProduct {
   price: number;
   description?: string;
   image: string;
+  images: { id: string; color: string; url: string };
   slug: string;
   sku?: string;
   stock?: number;

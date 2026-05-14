@@ -13,16 +13,25 @@ export interface Product {
   price: number;
   description?: string;
   image?: string;
+  images: any[];
   sku?: string;
   stock?: number;
   featured?: boolean;
+  img: any;
+}
+
+export interface ProductImageType {
+  documentId: string;
+  title: string;
+  color: string;
+  url?: string;
 }
 
 /**
  * Collection - Product categories
  */
 export interface Collection {
-    documentId:string;
+  documentId: string;
   id: string;
   name: string;
   slug?: string;
@@ -34,7 +43,7 @@ export interface Collection {
  * FAQ - Frequently Asked Questions
  */
 export interface FAQ {
-    documentId:string;
+  documentId: string;
   id: string;
   question: string;
   answer: string;
@@ -45,7 +54,7 @@ export interface FAQ {
  * Guide - Tutorials and how-to's
  */
 export interface Guide {
-    documentId:string;
+  documentId: string;
   id: string;
   title: string;
   description?: string;
@@ -81,3 +90,4 @@ export interface ApiResponse<T> {
 
 // Keep exports for backwards compatibility
 export type { Product as TransformedProduct };
+export type { ProductImageType as TransfromedProductImage };

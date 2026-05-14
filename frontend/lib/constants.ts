@@ -8,7 +8,7 @@ export const NAV_LINKS = [
 
 // Brand info
 export const BRAND = {
-  name: "Spare Care",
+  name: "H-Store",
   tagline: "Premium Hair Care Products",
   description: "High-quality hair care solutions for all hair types",
 };

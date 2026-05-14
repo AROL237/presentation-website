@@ -2,20 +2,26 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import { getProductById } from "@/lib/strapi";
+import { getProductById, getProductImages } from "@/lib/strapi";
 import { Button } from "@/components/ui/button";
-import { ShoppingCart, Heart } from "lucide-react";
-import { Product } from "@/lib/models";
+import { ShoppingCart, Heart, Bluetooth } from "lucide-react";
+import { Product, ProductImageType } from "@/lib/models";
 import { useCartStore } from "@/lib/cart.store";
-import { formatSingleProduct } from "@/lib/utils";
+import { formatListImages, formatSingleProduct } from "@/lib/utils";
 import ProductDetailSkeleton from "@/components/ProductDetailSkeleton";
+import { ProductImageListType } from "@/lib/models/Product";
 
 export default function ProductPage() {
   const params = useParams();
   const [product, setProduct] = useState<Product | null>(null);
+  const [productImageList, setProductImage] = useState<
+    ProductImageType[] | null
+  >(null);
   const [loading, setLoading] = useState(true);
   const [quantity, setQuantity] = useState(1);
   const [isAdding, setIsAdding] = useState(false);
+  const [selectedColor, setSelectedColor] = useState<string | null>(null);
+  const [selectedImageUrl, setSelectedImageUrl] = useState<string>("");
   const addItem = useCartStore((state) => state.addItem);
 
   useEffect(() => {
@@ -24,6 +30,19 @@ export default function ProductPage() {
         const data = await getProductById(params.id as string);
         const product = formatSingleProduct(data.data);
         setProduct(product);
+        setSelectedImageUrl(product.image || "");
+        setSelectedColor(null);
+
+        if (product.images && product.images.length !== 0) {
+          const imageListData = await getProductImages(product.id);
+          const list = formatListImages(imageListData);
+          setProductImage(list);
+
+          if (list.length > 0) {
+            setSelectedColor(list[0].color || null);
+            setSelectedImageUrl(list[0].url || product.image || "");
+          }
+        }
       } catch (error) {
         console.error("Failed to fetch product:", error);
       } finally {
@@ -62,11 +81,45 @@ export default function ProductPage() {
   }
 
   // Ensure complete image URL
-  const imageUrl = product.image
-    ? typeof product.image === "string" && product.image.startsWith("http")
-      ? product.image
-      : `${process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}${product.image}`
-    : "/placeholder-product.png";
+  // const imageUrl = product.image
+  //   ? typeof product.image === "string" && product.image.startsWith("http")
+  //     ? product.image
+  //     : `${process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}${product.image}`
+  //   : "/placeholder-product.png";
+
+  const getStrapiImageUrl = (imagePath?: string | null) => {
+    if (!imagePath || imagePath === "") {
+      return "/placeholder-product.png";
+    }
+    return imagePath.startsWith("http")
+      ? imagePath
+      : `${process.env.NEXT_PUBLIC_STRAPI_URL || "http://localhost:1337"}${imagePath}`;
+  };
+
+  const buildProductImageUrl = () => {
+    if (selectedImageUrl) {
+      return getStrapiImageUrl(selectedImageUrl);
+    }
+
+    if (product.image) {
+      return getStrapiImageUrl(product.image);
+    }
+
+    if (product.img?.formats?.medium?.url) {
+      return getStrapiImageUrl(product.img.formats.medium.url);
+    }
+
+    if (product.img?.url) {
+      return getStrapiImageUrl(product.img.url);
+    }
+
+    return "/placeholder-product.png";
+  };
+
+  const imageUrl = buildProductImageUrl();
+  const isLocalStrapiImage =
+    imageUrl.startsWith("http://localhost") ||
+    imageUrl.startsWith("http://127.0.0.1");
 
   const handleAddToCart = () => {
     if (!product) return;
@@ -77,7 +130,7 @@ export default function ProductPage() {
         name: product.name,
         price: product.price,
         quantity: quantity,
-        image: product.image,
+        image: selectedImageUrl || product.image || "",
       });
       setQuantity(1); // Reset quantity after adding
     } finally {
@@ -97,6 +150,7 @@ export default function ProductPage() {
               width={400}
               height={400}
               className="object-cover w-full h-full"
+              unoptimized={isLocalStrapiImage}
               onError={(e) => {
                 e.currentTarget.src = "/placeholder-product.png";
               }}
@@ -104,7 +158,7 @@ export default function ProductPage() {
           </div>
 
           {/* Details */}
-          <div className="space-y-6">
+          <div className=" space-y-2 md:space-y-4">
             <div>
               <h1 className="text-4xl md:text-5xl font-bold mb-2">
                 {product.name}
@@ -113,15 +167,45 @@ export default function ProductPage() {
                 SKU: {product.sku || "N/A"}
               </p>
             </div>
-
             <div className="text-3xl font-bold text-primary">
               ${product.price.toFixed(2)}
             </div>
 
+            {/* show product color section. */}
+            {productImageList && productImageList.length > 0 && (
+              <div className="py-3">
+                <p className="text-sm font-medium text-muted-foreground mb-2">
+                  Choose color
+                </p>
+                <div className="flex flex-wrap gap-3">
+                  {productImageList.map((item) => {
+                    const isActive = selectedColor === item.color;
+                    return (
+                      <button
+                        key={`${item.documentId}-${item.color}`}
+                        type="button"
+                        onClick={() => {
+                          setSelectedColor(item.color || null);
+                          setSelectedImageUrl(item.url || product.image || "");
+                        }}
+                        aria-label={`Select ${item.color || "default"} color`}
+                        className={`size-5 rounded-full border transition focus:outline-none focus:ring-2 focus:ring-primary ${
+                          isActive
+                            ? "ring-2 ring-primary border-transparent"
+                            : "border-border"
+                        }`}
+                        style={{
+                          backgroundColor: item.color || "#e5e7eb",
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              </div>
+            )}
             <p className="text-lg text-muted-foreground leading-relaxed">
               {product.description || "No description available"}
             </p>
-
             {/* Quantity & Actions */}
             <div className="space-y-4">
               <div className="flex items-center gap-4">
@@ -166,9 +250,8 @@ export default function ProductPage() {
                 </Button>
               </div>
             </div>
-
             {/* Additional Info */}
-            <div className="border-t border-border pt-6 space-y-3">
+            {/* <div className="border-t border-border pt-6 space-y-3">
               <div className="flex justify-between">
                 <span className="text-muted-foreground">Shipping</span>
                 <span>Calculated at checkout</span>
@@ -177,7 +260,7 @@ export default function ProductPage() {
                 <span className="text-muted-foreground">Returns</span>
                 <span>30-day return policy</span>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

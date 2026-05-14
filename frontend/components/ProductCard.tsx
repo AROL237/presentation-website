@@ -22,6 +22,9 @@ export default function ProductCard({ product }: ProductCardProps) {
       ? product.image
       : host.concat(product.image)
     : "/placeholder-product.png";
+  const isLocalStrapiImage =
+    image.startsWith("http://localhost") ||
+    image.startsWith("http://127.0.0.1");
 
   const handleAddToCart = (e: React.MouseEvent) => {
     e.preventDefault();
@@ -40,8 +43,6 @@ export default function ProductCard({ product }: ProductCardProps) {
     }
   };
 
-
-
   return (
     <Link href={`/products/${product.documentId}`}>
       <div className="group h-full flex flex-col rounded-lg overflow-hidden bg-card hover:shadow-lg transition-all duration-300 border border-border">
@@ -52,6 +53,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             width={300}
             height={300}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            unoptimized={isLocalStrapiImage}
             onError={(e) => {
               e.currentTarget.src = "/placeholder-product.png";
             }}

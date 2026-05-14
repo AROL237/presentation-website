@@ -35,7 +35,8 @@ export default function HomePage() {
 
   return (
     <div className="w-full">
-      <Hero />
+      {/* feature to review its use case. [hero section ] first [DISABLE] */}
+      {/* <Hero /> */}
 
       <MarketingBanner />
 

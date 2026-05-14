@@ -88,6 +88,10 @@ export async function getProductById(id: string) {
   return fetchAPI(`/api/products/${id}?populate=*`);
 }
 
+export async function getProductImages(id: string) {
+  return fetchAPI(`/api/images/?populate=*&filters[product]=${id}`);
+}
+
 /**
  * Collections API Functions
  */
@@ -106,4 +110,12 @@ export async function getCollectionBySlug(slug: string) {
 
 export async function getPageBySlug(slug: string) {
   return fetchAPI(`/api/pages?filters[slug][$eq]=${slug}&populate=*`);
+}
+
+/**
+ * Marketing Banner API Functions
+ */
+
+export async function getMarketingBanners() {
+  return fetchAPI("/api/marketing-banners?populate=*&sort=order:asc");
 }
